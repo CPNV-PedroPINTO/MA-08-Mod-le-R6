@@ -46,10 +46,11 @@ CREATE TABLE Weapons (
 drop table if EXISTS Mods
 CREATE TABLE Mods (
   id INT NOT NULL   identity(1,1)  PRIMARY KEY ,
-  Name VARCHAR(45) NOT NULL UNIQUE,
+  Name VARCHAR(45) NOT NULL ,
   Duration INT NOT NULL,
+  -- Contrainte de domaine -que 60min 
   Special INT NOT NULL,
-  Definition VARCHAR(45) NOT NULL,
+  Definition VARCHAR(100) NOT NULL,
  )
    use RainbowSix;
 drop table if EXISTS Stat
@@ -122,3 +123,9 @@ REFERENCES Gadgets(id)
 
  ALTER TABLE Maps WITH CHECK ADD  CONSTRAINT FK_Maps_Mods FOREIGN KEY(Mods_id)
 REFERENCES Mods(id)
+
+ALTER TABLE Mods
+ADD CHECK (duration<=60);
+
+ALTER TABLE Weapons
+ADD CHECK (Damage<=100);
