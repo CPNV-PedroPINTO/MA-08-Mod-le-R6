@@ -6,6 +6,8 @@ CREATE TABLE Pendants (
   Rarity VARCHAR(45) NOT NULL,
   Definition VARCHAR(45) NOT NULL,
   )
+
+  SELECT * FROM Pendants;
   
   use RainbowSix;
 drop table if EXISTS Skins
@@ -16,7 +18,8 @@ CREATE TABLE Skins (
   Rarity VARCHAR(45) NOT NULL,
   Pattern VARCHAR(45) NOT NULL,
   )
-
+  
+  SELECT * FROM Skins;
 
 use RainbowSix;
 drop table if EXISTS Accessories
@@ -28,6 +31,8 @@ CREATE TABLE Accessories (
   Stat VARCHAR(100) NOT NULL,
   Descript VARCHAR(45) NOT NULL,
   )
+  
+  SELECT * FROM Accessories;
 
   use RainbowSix;
 drop table if EXISTS Weapons
@@ -42,6 +47,8 @@ CREATE TABLE Weapons (
   Accessories_id INT,
 )
 
+  SELECT * FROM Weapons;
+
   use RainbowSix;
 drop table if EXISTS Mods
 CREATE TABLE Mods (
@@ -52,6 +59,9 @@ CREATE TABLE Mods (
   Special INT NOT NULL,
   Definition VARCHAR(100) NOT NULL,
  )
+
+  SELECT * FROM Mods;
+
    use RainbowSix;
 drop table if EXISTS Stat
 CREATE TABLE Stat (
@@ -60,6 +70,9 @@ CREATE TABLE Stat (
   Speed VARCHAR(45) NOT NULL UNIQUE,
  )   
   
+  SELECT * FROM Stat;
+
+
     use RainbowSix;
 drop table if EXISTS Characters
 CREATE TABLE Characters (
@@ -77,7 +90,8 @@ CREATE TABLE Characters (
   Rewards_id INT,
   Gadgets_id INT,
 
- )
+ )  
+ SELECT * FROM Characters;
 
     use RainbowSix;
 drop table if EXISTS Maps
@@ -91,6 +105,9 @@ CREATE TABLE Maps (
   Mods_id INT,
   
  )
+
+  SELECT * FROM Maps;
+
      use RainbowSix;
 drop table if EXISTS Rewards
 CREATE TABLE Rewards (
@@ -99,6 +116,8 @@ CREATE TABLE Rewards (
   Type VARCHAR(45) NOT NULL ,
    
  )
+
+   SELECT * FROM Rewards;
 
    use RainbowSix;
 drop table if EXISTS Gadgets
@@ -109,6 +128,10 @@ CREATE TABLE Gadgets (
   Part VARCHAR(200) NOT NULL ,
    
  )
+    SELECT * FROM Gadgets;
+
+	--Contraintes référencielles
+
  ALTER TABLE Weapons WITH CHECK ADD  CONSTRAINT FK_Weapons_Accessories FOREIGN KEY(Accessories_id)
 REFERENCES Accessories(id)
 
@@ -129,3 +152,8 @@ ADD CHECK (duration<=60);
 
 ALTER TABLE Weapons
 ADD CHECK (Damage<=100);
+
+
+
+
+	select * from V_R6
