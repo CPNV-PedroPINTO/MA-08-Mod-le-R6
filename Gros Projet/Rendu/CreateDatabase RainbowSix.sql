@@ -1,3 +1,19 @@
+USE master ;
+-- Déconnexion des utilisateurs pour drop
+IF (EXISTS (SELECT name
+FROM master.dbo.sysdatabases
+WHERE name = 'RainbowSix'))
+BEGIN 
+    USE master;
+    ALTER DATABASE RainbowSix SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE RainbowSix;
+END 
+-- création
+CREATE DATABASE RainbowSix;
+GO
+
+
+ --Création de la table Pendants
 use RainbowSix;
 drop table if EXISTS Pendants
 CREATE TABLE Pendants (
@@ -9,7 +25,9 @@ CREATE TABLE Pendants (
 
   SELECT * FROM Pendants;
   
-  use RainbowSix;
+   --Création de la table Skins
+
+
 drop table if EXISTS Skins
 CREATE TABLE Skins (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -21,7 +39,9 @@ CREATE TABLE Skins (
   
   SELECT * FROM Skins;
 
-use RainbowSix;
+   --Création de la table Accessories
+
+
 drop table if EXISTS Accessories
 CREATE TABLE Accessories (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -34,7 +54,9 @@ CREATE TABLE Accessories (
   
   SELECT * FROM Accessories;
 
-  use RainbowSix;
+   --Création de la table Weapons
+
+
 drop table if EXISTS Weapons
 CREATE TABLE Weapons (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -49,7 +71,9 @@ CREATE TABLE Weapons (
 
   SELECT * FROM Weapons;
 
-  use RainbowSix;
+   --Création de la table Mods
+
+
 drop table if EXISTS Mods
 CREATE TABLE Mods (
   id INT NOT NULL   identity(1,1)  PRIMARY KEY ,
@@ -62,7 +86,9 @@ CREATE TABLE Mods (
 
   SELECT * FROM Mods;
 
-   use RainbowSix;
+   --Création de la table Stat
+
+
 drop table if EXISTS Stat
 CREATE TABLE Stat (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -72,8 +98,9 @@ CREATE TABLE Stat (
   
   SELECT * FROM Stat;
 
+   --Création de la table Characters
 
-    use RainbowSix;
+
 drop table if EXISTS Characters
 CREATE TABLE Characters (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -92,8 +119,10 @@ CREATE TABLE Characters (
 
  )  
  SELECT * FROM Characters;
+  
+  --Création de la table Maps
 
-    use RainbowSix;
+
 drop table if EXISTS Maps
 CREATE TABLE Maps (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -107,8 +136,8 @@ CREATE TABLE Maps (
  )
 
   SELECT * FROM Maps;
+   --Création de la table Rewards
 
-     use RainbowSix;
 drop table if EXISTS Rewards
 CREATE TABLE Rewards (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -118,8 +147,9 @@ CREATE TABLE Rewards (
  )
 
    SELECT * FROM Rewards;
+   
+ --Création de la table Gadgets
 
-   use RainbowSix;
 drop table if EXISTS Gadgets
 CREATE TABLE Gadgets (
   id INT NOT NULL identity(1,1)  PRIMARY KEY ,
@@ -130,7 +160,7 @@ CREATE TABLE Gadgets (
  )
     SELECT * FROM Gadgets;
 
-	--Contraintes référencielles
+--Contraintes référencielles
 
  ALTER TABLE Weapons WITH CHECK ADD  CONSTRAINT FK_Weapons_Accessories FOREIGN KEY(Accessories_id)
 REFERENCES Accessories(id)
@@ -147,13 +177,9 @@ REFERENCES Gadgets(id)
  ALTER TABLE Maps WITH CHECK ADD  CONSTRAINT FK_Maps_Mods FOREIGN KEY(Mods_id)
 REFERENCES Mods(id)
 
+--Contrainte de domaine
 ALTER TABLE Mods
 ADD CHECK (duration<=60);
 
 ALTER TABLE Weapons
 ADD CHECK (Damage<=100);
-
-
-
-
-	select * from V_R6

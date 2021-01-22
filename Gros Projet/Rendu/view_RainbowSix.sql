@@ -1,5 +1,6 @@
+	--Script permettant de créer la vue afin de calculer le nombre d'enregistrements dans notre DB par table
 
-CREATE VIEW V_RainbowSix AS SELECT * FROM 
+	CREATE VIEW V_R6 AS SELECT * FROM 
 	(SELECT COUNT(*) AS "Characters" FROM Characters) as Characters,
     (SELECT COUNT(*) AS "Gadgets" FROM Gadgets) as Gadgets,
     (SELECT COUNT(*) AS "Accessories" FROM Accessories) as Accessories,
@@ -10,6 +11,7 @@ CREATE VIEW V_RainbowSix AS SELECT * FROM
 	(SELECT COUNT(*) AS "Skins" FROM Skins) as Skins,
 	(SELECT COUNT(*) AS "Stat" FROM Stat) as Stat,
 	(SELECT COUNT(*) AS "Weapons" FROM Weapons) as Weapons
-	;
-
 	
+
+
+
